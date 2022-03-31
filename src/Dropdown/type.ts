@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleProp, TextStyle, ViewStyle, TextProps, ImageStyle } from 'react-native';
 
 export interface IProps {
@@ -13,6 +12,7 @@ export interface IProps {
   fontFamily?: string;
   iconColor?: string;
   activeColor?: string;
+  onTouchColor?: string;
   data: any[];
   value?: any | null;
   placeholder?: string;

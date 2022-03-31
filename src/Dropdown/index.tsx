@@ -2,8 +2,9 @@ import React, { useCallback, useEffect, useImperativeHandle, useRef, useState } 
 import {
   Dimensions, FlatList,
   Image, Keyboard, Modal,
-  Text, TouchableOpacity,
+  Text,
   TouchableWithoutFeedback,
+  TouchableHighlight,
   View,
   ViewStyle,
   KeyboardEvent,
@@ -51,6 +52,7 @@ const DropdownComponent = React.forwardRef((props: DropdownProps, currentRef) =>
     valueField,
     value,
     activeColor,
+    onTouchColor,
     fontFamily,
     iconColor = "gray",
     searchPlaceholder,
@@ -231,11 +233,11 @@ const DropdownComponent = React.forwardRef((props: DropdownProps, currentRef) =>
   const _renderItem = ({ item, index }: { item: any; index: number }) => {
     const isSelected = currentValue && currentValue[valueField];
     return (
-      <TouchableOpacity key={index} onPress={() => onSelect(item)} style={[deepEqual(item[valueField], isSelected) && { backgroundColor: activeColor }]}>
+      <TouchableHighlight key={index} underlayColor={onTouchColor || activeColor} onPress={() => onSelect(item)} style={[deepEqual(item[valueField], isSelected) && { backgroundColor: activeColor }]}>
         {renderItem ? renderItem(item) : <View style={styles.item}>
           <Text style={[styles.textItem, selectedTextStyle, font()]}>{item[labelField]}</Text>
         </View>}
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   };
 
